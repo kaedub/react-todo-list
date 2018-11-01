@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 
-class TodoForm extends Component {
+class EditForm extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {text: ''};
+        this.state = {text: this.props.text};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,17 +17,16 @@ class TodoForm extends Component {
 
     handleSubmit(evt) {
         evt.preventDefault();
-        this.props.handleAdd(this.state);
-        this.setState({text: ''}); // clear form field
+        this.props.hideForm();
+        this.props.handleEdit(this.props.id, this.state.text);
     }
     
     render() {
         return <form onSubmit={this.handleSubmit}>
-            <label htmlFor="text"></label>
-            <input id="text" name="text" onChange={this.handleChange} value={this.state.text}></input>
-            <button>Add New Todo</button>
+            <input type="text" name="text" onChange={this.handleChange} value={this.state.text}></input>
+            <button>Save</button>
         </form>
     }
 }
 
-export default TodoForm;
+export default EditForm;
