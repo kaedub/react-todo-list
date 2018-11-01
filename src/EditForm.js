@@ -22,10 +22,12 @@ class EditForm extends Component {
     }
     
     render() {
-        return <form onSubmit={this.handleSubmit}>
-            <input type="text" name="text" onChange={this.handleChange} value={this.state.text}></input>
-            <button>Save</button>
-        </form>
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <input type="text" name="text" onChange={this.handleChange} value={this.state.text}></input>
+                <button>Save</button>
+            </form>
+        )
     }
 }
 

@@ -1,0 +1,15 @@
+.completed {
+    text-decoration: line-through;
+}
+
+.pending {
+    text-decoration: none;
+}
+
+button {
+    margin: 5px;
+}
+
+li {
+    padding: 10px;
+}
