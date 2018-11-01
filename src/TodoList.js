@@ -14,6 +14,7 @@ class TodoList extends Component {
         this.handleAdd = this.handleAdd.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
+        this.handleCheckbox = this.handleCheckbox.bind(this);
     }
 
     handleAdd(todo) {
@@ -49,6 +50,19 @@ class TodoList extends Component {
         });
     }
 
+    handleCheckbox(id) {
+        let updatedTodos = this.state.todos.map(st => {
+            if (st.id === id) {
+                st.isCompleted = !st.isCompleted;
+            }
+            return st;
+        });
+
+        this.setState({todos: updatedTodos}, function() {
+            localStorage.setItem("todos", JSON.stringify(this.state.todos));
+        });
+    }
+
     render() {
         let todos = this.state.todos.map(todo => {
             return <Todo 
@@ -57,7 +71,8 @@ class TodoList extends Component {
                 key={todo.id} 
                 id={todo.id}
                 isCompleted={todo.isCompleted}
-                handleEdit={this.handleEdit}/>
+                handleEdit={this.handleEdit}
+                handleCheckbox={this.handleCheckbox}/>
         });
         return (
             <div id="TodoList">
